@@ -1,26 +1,40 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import { About, Features, Tokenomics, Roadmap, Community } from './components/Sections'
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    document.title = 'AmeroX — DeFi DEX, Staking & Flash Loans'
+    const metaDesc = document.querySelector('meta[name="description"]') || document.createElement('meta')
+    metaDesc.name = 'description'
+    metaDesc.content = 'AmeroX is a next-generation DeFi platform with a DEX, liquidity staking, and flash loan engine on the AMR blockchain.'
+    document.head.appendChild(metaDesc)
+
+    const metaKeywords = document.querySelector('meta[name="keywords"]') || document.createElement('meta')
+    metaKeywords.name = 'keywords'
+    metaKeywords.content = 'DeFi, DEX, staking, flash loans, AMR token, AmeroX, crypto, liquidity, blockchain'
+    document.head.appendChild(metaKeywords)
+  }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-black text-white">
+      <Navbar />
+      <Hero />
+      <About />
+      <Features />
+      <Tokenomics />
+      <Roadmap />
+      <Community />
+      <footer className="bg-black/80 border-t border-white/10 py-10">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-white/60 text-sm">© {new Date().getFullYear()} AmeroX. All rights reserved.</p>
+          <div className="text-white/50 text-sm">Built for the decentralized future.</div>
         </div>
-      </div>
+      </footer>
+      <style>{`
+        .font-orbitron { font-family: 'Orbitron', 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; }
+      `}</style>
     </div>
   )
 }
